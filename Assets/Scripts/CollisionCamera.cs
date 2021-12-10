@@ -8,9 +8,9 @@ public class CollisionCamera : MonoBehaviour {
 	public float maxdis = 4.0f;
 	public float smooth = 10.0f;
 	Vector3 doll;
-	public Vector3 dolldirAdjusted;
-	public float distance;
-	public float scroll;
+    public float distance;
+
+    public float scroll;
 	void Start () {
 		doll = transform.localPosition.normalized;
 		distance = transform.localPosition.magnitude;
