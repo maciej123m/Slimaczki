@@ -97,7 +97,11 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 221}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 113
+=======
+  controlID: 117
+>>>>>>> main
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,7 +126,11 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 342}
   m_MaxSize: {x: 12003, y: 8042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 37
+=======
+  controlID: 36
+>>>>>>> main
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -300,7 +308,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 342}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 38
+=======
+  controlID: 37
+>>>>>>> main
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -325,7 +337,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 39
+=======
+  controlID: 38
+>>>>>>> main
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -390,22 +406,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Scripts/CameraScript
+=======
+    - Assets
+>>>>>>> main
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Scripts/CameraScript
+=======
+  - Assets
+>>>>>>> main
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Projekty\Slimaczki
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 7c410000
     m_LastClickedID: 16764
     m_ExpandedIDs: 00000000143e00001c3e000000ca9a3b
+=======
+    m_SelectedIDs: 1e3e0000
+    m_LastClickedID: 15902
+    m_ExpandedIDs: 000000001e3e00008e3e000000ca9a3b
+>>>>>>> main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -433,7 +463,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000143e0000
+=======
+    m_ExpandedIDs: 000000001e3e0000
+>>>>>>> main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -554,9 +588,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 52fbffffc83d0000d63d0000
+=======
+      m_SelectedIDs: e63d0000
+      m_LastClickedID: 15846
+      m_ExpandedIDs: 52fbffff
+>>>>>>> main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -616,9 +656,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -0.17339039, y: 0.6618738, z: 0.8984792}
     speed: 2
     m_Value: {x: -0.17339039, y: 0.6618738, z: 0.8984792}
+=======
+    m_Target: {x: -6.2490845, y: 8.126955, z: 1.7414474}
+    speed: 2
+    m_Value: {x: -6.2490845, y: 8.126955, z: 1.7414474}
+>>>>>>> main
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -665,6 +711,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.11369788, y: 0.6817924, z: -0.10849464, w: 0.7144747}
     speed: 2
     m_Value: {x: 0.113697134, y: 0.6817879, z: -0.10849393, w: 0.71446997}
@@ -672,6 +719,15 @@ MonoBehaviour:
     m_Target: 2.424298
     speed: 2
     m_Value: 2.424298
+=======
+    m_Target: {x: 0.15742885, y: -0.471231, z: 0.085892685, w: 0.8635944}
+    speed: 2
+    m_Value: {x: 0.15742764, y: -0.4712274, z: 0.08589203, w: 0.8635878}
+  m_Size:
+    m_Target: 16.282455
+    speed: 2
+    m_Value: 16.282455
+>>>>>>> main
   m_Ortho:
     m_Target: 0
     speed: 2
