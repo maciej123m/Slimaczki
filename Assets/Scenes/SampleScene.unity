@@ -575,6 +575,7 @@ MonoBehaviour:
   celownik: {fileID: 333035213}
   inputSen: 150
   speedChangeCamera: 3
+  endAiminng: 1
 --- !u!1 &1959527996
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +601,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959527996}
-  m_Material: {fileID: 13400000, guid: fef5010a9e0d7bb428c32174bf62e628, type: 2}
+  m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 683ff3573483b444094630881b342f4e, type: 2}
   m_EnableTreeColliders: 1
@@ -628,7 +629,7 @@ Terrain:
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 7ce508298627537418048a956fac246d, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 71bf60c2caf347a4bad602b0cc6fadfe, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1

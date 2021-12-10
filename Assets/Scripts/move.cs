@@ -57,7 +57,7 @@ public class move : MonoBehaviour
             velocity = 0;
         }
         else if (velocity > -0.08) {
-            velocity -= gravity * (float) 0.0001;
+            velocity -= gravity * (float) 0.001 * Time.deltaTime;
         }
 
 
