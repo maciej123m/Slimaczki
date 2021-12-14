@@ -9888,6 +9888,5 @@ MonoBehaviour:
   rocketExplosion: {fileID: 1764654978243476, guid: a98b15aa948478849b54661e4d9a317e, type: 3}
   inFlightAudioSource: {fileID: 0}
   disableOnHit: {fileID: 3402501733211202531}
-  col: {fileID: 0}
-  radius: 5
-  power: 500
+  radius: 10
+  power: 750

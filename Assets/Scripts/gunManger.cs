@@ -8,14 +8,4 @@ public class gunManger : MonoBehaviour
 
     public List<GameObject> guns;
     public int selectedGun = 0;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
