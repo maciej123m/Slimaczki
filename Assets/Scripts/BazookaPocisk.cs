@@ -27,6 +27,9 @@ public class BazookaPocisk : MonoBehaviour
     void Start() {
         mesh = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
+
+
+
     }
 
 
@@ -57,7 +60,7 @@ public class BazookaPocisk : MonoBehaviour
             {
                 if(hit.tag == "Player")
                 {
-                    //TUTAJ BÊDZIE FUNKCJA ZADAJ¥CA DMG TEMU GAMEOBJECT
+                    //TUTAJ Bï¿½DZIE FUNKCJA ZADAJï¿½CA DMG TEMU GAMEOBJECT
                 }
                 rbHit.AddExplosionForce(power, transform.position, radius);
             }
