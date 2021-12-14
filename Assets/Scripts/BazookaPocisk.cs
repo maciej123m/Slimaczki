@@ -12,18 +12,24 @@ public class BazookaPocisk : MonoBehaviour
     public ParticleSystem disableOnHit;
 
     private bool explode = false;
-    private bool enabled = false;
 
     private MeshRenderer mesh;
 
     private Rigidbody rb;
 
-    public SphereCollider col;
+    [Range(1,20)]
+    public float radius = 5f;
+
+    [Range(300, 1000)]
+    public float power = 500f;
 
     // Start is called before the first frame update
     void Start() {
         mesh = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
+
+
+
     }
 
     // Update is called once per frame
@@ -33,6 +39,7 @@ public class BazookaPocisk : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
+        var collisionPos = transform.position;
         if (explode) {
             return;
         }
@@ -41,27 +48,22 @@ public class BazookaPocisk : MonoBehaviour
         disableOnHit.Stop();
         explode = true;
         rb.drag = 1000f;
-        col.enabled = true;
-
     }
 
-    private void OnCollisionStay(Collision collision) {
-        if (!explode) {
-            return;
-        }
-        else {
-            if (enabled) {
-                return;
-            }
-            Debug.Log(collision.transform.name);
-
-            enabled = true;
-        }
-    }
 
     private void Explode() {
-        // --- Instantiate new explosion option. I would recommend using an object pool ---
+
+        Collider[] collisions = Physics.OverlapSphere(transform.position, radius);
+        Debug.Log("bang");
+        foreach (var hit in collisions) {
+            var rbHit = hit.GetComponent<Rigidbody>();
+            if (rbHit != null) {
+                rb.AddExplosionForce(500f, transform.position, 25);
+            }
+        }
+
         GameObject newExplosion =
             Instantiate(rocketExplosion, transform.position, rocketExplosion.transform.rotation, null);
+
     }
 }

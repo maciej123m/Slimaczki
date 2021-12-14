@@ -9759,7 +9759,6 @@ GameObject:
   - component: {fileID: 6047048566284081181}
   - component: {fileID: -3295168985758867431}
   - component: {fileID: 2566988003331862640}
-  - component: {fileID: 4194898840680817822}
   m_Layer: 0
   m_Name: BazzokaMissiles
   m_TagString: Untagged
@@ -9889,17 +9888,6 @@ MonoBehaviour:
   rocketExplosion: {fileID: 1764654978243476, guid: a98b15aa948478849b54661e4d9a317e, type: 3}
   inFlightAudioSource: {fileID: 0}
   disableOnHit: {fileID: 3402501733211202531}
-  col: {fileID: 4194898840680817822}
---- !u!135 &4194898840680817822
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6047048566284081180}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 8
-  m_Center: {x: 0, y: 0, z: 0}
+  col: {fileID: 0}
+  radius: 5
+  power: 500
