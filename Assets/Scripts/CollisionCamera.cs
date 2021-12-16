@@ -21,7 +21,7 @@ public class CollisionCamera : MonoBehaviour {
 		scroll = Input.GetAxis("Mouse ScrollWheel");
 		if(maxdis <=9f && maxdis>=0.9f)
 		{
-			maxdis += scroll;		
+			maxdis -= scroll * 3f;		
 		}
 		else
 		{

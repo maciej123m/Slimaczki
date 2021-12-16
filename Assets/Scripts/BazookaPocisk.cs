@@ -13,8 +13,6 @@ public class BazookaPocisk : MonoBehaviour
 
     private bool explode = false;
 
-    private MeshRenderer mesh;
-
     private Rigidbody rb;
 
     [Range(1,20)]
@@ -25,11 +23,7 @@ public class BazookaPocisk : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        mesh = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-
-
-
     }
 
 
@@ -39,7 +33,6 @@ public class BazookaPocisk : MonoBehaviour
             return;
         }
         StartCoroutine(Explode());
-        mesh.enabled = false;
         disableOnHit.Stop();
         explode = true;
         rb.drag = 1000f;
@@ -65,8 +58,7 @@ public class BazookaPocisk : MonoBehaviour
                 rbHit.AddExplosionForce(power, transform.position, radius);
             }
         }
-
-        yield return new WaitForSeconds(2);
         Destroy(transform.gameObject);
+        yield return explode;
     }
 }

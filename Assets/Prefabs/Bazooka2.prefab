@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f341a3bd3fc714fbbea12a58b22b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocisk: {fileID: 6047048566284081180, guid: 9d82406ea0e1f504292a58202ff3fc61, type: 3}
+  pocisk: {fileID: 8937102742330764664, guid: 365177e08983643469a70e6e072d3084, type: 3}
   t: {fileID: 0}
   equip: {fileID: 8300000, guid: 2b401956f2477ee4ca8e20a498d35dae, type: 3}
   fire: {fileID: 8300000, guid: 40e71b0f7bd610849b40f150553f4702, type: 3}

@@ -37,7 +37,9 @@ public class BazzokaScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) {
             ad.clip = fire;
             ad.Play();
-            var obj = Instantiate(pocisk, transform.GetChild(0).transform.position, Quaternion.identity);
+            var q  = new Quaternion(transform.localRotation.x,transform.localRotation.y,transform.localRotation.z,transform.localRotation
+                .w);
+            var obj = Instantiate(pocisk, transform.GetChild(0).transform.position, Camera.main.transform.rotation);
 
             obj.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
             force = 0;

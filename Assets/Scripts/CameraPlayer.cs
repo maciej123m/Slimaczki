@@ -15,7 +15,7 @@ public class CameraPlayer : MonoBehaviour {
     public GameObject celownik;
 
     //skrypt move gracza
-    public move player;
+    public MoveRidigbody player;
 
     //kąty maksymalne
     private float minClampEagle = 80.0f;
