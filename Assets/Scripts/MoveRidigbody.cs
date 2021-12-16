@@ -11,7 +11,11 @@ public class MoveRidigbody : MonoBehaviour
     //szybkoœæ chodzenia
     public float movmentSpeed = 5f;
 
-    public float jumpSpeed = 5f;
+    [Range(3,10)]
+    public float jumpForce = 5f;
+
+    [Range(2, 7)]
+    public float jumpLenght = 3f;
 
     private Vector3 moveDirection;
 
@@ -26,9 +30,9 @@ public class MoveRidigbody : MonoBehaviour
     public bool isMove = false;
 
     //czy jest na ziemi
-    private bool isGrounded = true;
+    public bool isGrounded = true;
 
-    private bool isJump = false;
+    public bool isJump = false;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -88,10 +92,10 @@ public class MoveRidigbody : MonoBehaviour
 
         moveDirection.Normalize();
 
-        //skakanie
+        //SKOK
         if (Input.GetKeyDown(KeyCode.Space)) {
-            var m = moveDirection * 2;
-            m.y = jumpSpeed;
+            var m = moveDirection * jumpLenght;
+            m.y = jumpForce;
             rb.velocity += m;
             isJump = true;
         }
@@ -120,6 +124,10 @@ public class MoveRidigbody : MonoBehaviour
     void OnCollisionEnter(Collision collision) {
         isGrounded = true;
         isJump = false;
+    }
+
+    void OnCollisionStay(Collision collision) {
+        isGrounded = true;
     }
 
     void OnCollisionExit(Collision collision) {
