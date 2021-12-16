@@ -15,7 +15,7 @@ public class CameraPlayer : MonoBehaviour {
     public GameObject celownik;
 
     //skrypt move gracza
-    public move player;
+    public MoveRidigbody player;
 
     //kąty maksymalne
     private float minClampEagle = 80.0f;
@@ -146,7 +146,7 @@ public class CameraPlayer : MonoBehaviour {
 
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
-        Debug.Log(rotY);
+        //Debug.Log(rotY);
         rotY += mouseX * aimingCameraSensitivity * Time.deltaTime;
         rotX -= mouseY * aimingCameraSensitivity * Time.deltaTime;
         rotX = Mathf.Clamp(rotX, -50, 50);

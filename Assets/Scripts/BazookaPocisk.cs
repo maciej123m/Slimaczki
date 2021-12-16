@@ -12,56 +12,53 @@ public class BazookaPocisk : MonoBehaviour
     public ParticleSystem disableOnHit;
 
     private bool explode = false;
-    private bool enabled = false;
-
-    private MeshRenderer mesh;
 
     private Rigidbody rb;
 
-    public SphereCollider col;
+    [Range(1,20)]
+    public float radius = 5f;
+
+    [Range(300, 1000)]
+    public float power = 500f;
 
     // Start is called before the first frame update
     void Start() {
-        mesh = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision) {
+        var collisionPos = transform.position;
         if (explode) {
             return;
         }
-        mesh.enabled = false;
-        Explode();
+        StartCoroutine(Explode());
         disableOnHit.Stop();
         explode = true;
         rb.drag = 1000f;
-        col.enabled = true;
 
     }
 
-    private void OnCollisionStay(Collision collision) {
-        if (!explode) {
-            return;
-        }
-        else {
-            if (enabled) {
-                return;
-            }
-            Debug.Log(collision.transform.name);
 
-            enabled = true;
-        }
-    }
+    IEnumerator Explode() {
 
-    private void Explode() {
-        // --- Instantiate new explosion option. I would recommend using an object pool ---
         GameObject newExplosion =
             Instantiate(rocketExplosion, transform.position, rocketExplosion.transform.rotation, null);
+
+        Collider[] collisions = Physics.OverlapSphere(transform.position, radius);
+        foreach (var hit in collisions)
+        {
+            Rigidbody rbHit = hit.GetComponent<Rigidbody>();
+            if (rbHit != null)
+            {
+                if(hit.tag == "Player")
+                {
+                    //TUTAJ B�DZIE FUNKCJA ZADAJ�CA DMG TEMU GAMEOBJECT
+                }
+                rbHit.AddExplosionForce(power, transform.position, radius);
+            }
+        }
+        Destroy(transform.gameObject);
+        yield return explode;
     }
 }

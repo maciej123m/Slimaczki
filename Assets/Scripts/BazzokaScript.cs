@@ -14,6 +14,10 @@ public class BazzokaScript : MonoBehaviour
 
     public AudioClip equip;
     public AudioClip fire;
+
+    [Range(50,150)]
+    public float limit = 100;
+
     void Start() {
         force = 0f;
         ad = GetComponent<AudioSource>();
@@ -27,21 +31,25 @@ public class BazzokaScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) {
             licznik = true;
-
         }
 
         if (licznik) {
-            force += Time.deltaTime * 20;
+            if (force < limit) {
+                force += Time.deltaTime * 20;
+            }
         }
 
+        Debug.Log(force);
         if (Input.GetMouseButtonUp(0)) {
             ad.clip = fire;
             ad.Play();
-            var obj = Instantiate(pocisk, transform.GetChild(0).transform.position, Quaternion.identity);
-
+            var q  = new Quaternion(transform.localRotation.x,transform.localRotation.y,transform.localRotation.z,transform.localRotation
+                .w);
+            var obj = Instantiate(pocisk, transform.GetChild(0).transform.position, Camera.main.transform.rotation);
+            Destroy(transform.GetChild(0).gameObject);
             obj.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
             force = 0;
-
+            licznik = false;
         }
 
     }
