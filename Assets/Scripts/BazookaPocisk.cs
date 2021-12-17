@@ -55,7 +55,9 @@ public class BazookaPocisk : MonoBehaviour
                 {
                     //TUTAJ B�DZIE FUNKCJA ZADAJ�CA DMG TEMU GAMEOBJECT
                 }
-                rbHit.AddExplosionForce(power, transform.position, radius);
+
+                var explodePosition = transform.position + Vector3.down * 2;
+                rbHit.AddExplosionForce(power, explodePosition, radius);
             }
         }
         Destroy(transform.gameObject);
