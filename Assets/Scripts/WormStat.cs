@@ -6,14 +6,16 @@ public class WormStat : MonoBehaviour
 {
     // Start is called before the first frame update,
     private float hp;
-    public float initValue = 100;
+    public int initValue = 100;
+    public HealthBar healthBar;
     void Start() {
         hp = initValue;
+        healthBar.setMaxHealth(initValue);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void TakeDamage(int dmg) {
+        hp -= dmg;
+        healthBar.TakeDamage(dmg);
     }
+
 }

@@ -15,6 +15,8 @@ public class BazookaPocisk : MonoBehaviour
 
     private Rigidbody rb;
 
+    public int maxDMG = 50;
+
     [Range(1,20)]
     public float radius = 5f;
 
@@ -51,13 +53,16 @@ public class BazookaPocisk : MonoBehaviour
             Rigidbody rbHit = hit.GetComponent<Rigidbody>();
             if (rbHit != null)
             {
-                if(hit.tag == "Player")
-                {
-                    //TUTAJ B�DZIE FUNKCJA ZADAJ�CA DMG TEMU GAMEOBJECT
+                var explodePosition = transform.position + Vector3.down * 2;
+                if (hit.tag == "Player") {
+                    int distance = (int)Vector3.Distance(transform.position, hit.transform.position);
+                    int dmg = maxDMG / (distance == 0 ? 1 : distance);
+                    Debug.Log($"DMG: {dmg} distance: {distance}");
+                    hit.GetComponent<WormStat>().TakeDamage(dmg);
                 }
 
-                var explodePosition = transform.position + Vector3.down * 2;
                 rbHit.AddExplosionForce(power, explodePosition, radius);
+
             }
         }
         Destroy(transform.gameObject);
