@@ -6,20 +6,22 @@ public class BazookaPocisk : MonoBehaviour
 {
     //eksplozja pociku
     public GameObject rocketExplosion;
-
+    //dŸwiêk podczas lotu
     public AudioSource inFlightAudioSource;
 
     public ParticleSystem disableOnHit;
-
+    //czy eksplodowa³o
     private bool explode = false;
 
     private Rigidbody rb;
-
+    //maksymalne dmg mo¿liwe do zadania przez ten pocisk
     public int maxDMG = 50;
 
+    //w jakiej odleg³oœci jest odczuwalne
     [Range(1,20)]
-    public float radius = 5f;
+    public float radius = 5f; 
 
+    //moc
     [Range(300, 1000)]
     public float power = 500f;
 
@@ -56,7 +58,7 @@ public class BazookaPocisk : MonoBehaviour
                 var explodePosition = transform.position + Vector3.down * 2;
                 if (hit.tag == "Player") {
                     int distance = (int)Vector3.Distance(transform.position, hit.transform.position);
-                    int dmg = maxDMG / (distance == 0 ? 1 : distance);
+                    int dmg = maxDMG / (distance == 0 ? 1 : (distance/2) == 0?1:distance/2);
                     Debug.Log($"DMG: {dmg} distance: {distance}");
                     hit.GetComponent<WormStat>().TakeDamage(dmg);
                 }

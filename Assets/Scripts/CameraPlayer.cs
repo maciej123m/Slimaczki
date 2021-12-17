@@ -42,25 +42,29 @@ public class CameraPlayer : MonoBehaviour {
 
 
     public bool endAiminng = true;
+
     //zmienna odpowiadająca za to czy przycisk jest wciśnięty
     private bool keyDown = false;
 
+    //jeżeli pocisk już został wystrzelony zablokuj kamere!
+    private bool cameraLocked = false;
+
     void Start()
     {
-        LoadPlayer();
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         defaultRotation = Camera.main.transform.localRotation;
-        init();
     }
 
     public void LoadPlayer(GameObject p) {
         if (playerRidigbodyScript != null) {
             playerRidigbodyScript.IsMove(false);
         }
+
+        cameraLocked = false;
         player = p;
         playerRidigbodyScript = player.GetComponent<MoveRidigbody>();
         celownik = player.transform.Find("Celownik").gameObject;
@@ -68,25 +72,25 @@ public class CameraPlayer : MonoBehaviour {
         playerRidigbodyScript.IsMove(true);
     }
 
-    public void LoadPlayer() {
-        if (playerRidigbodyScript != null) {
-            playerRidigbodyScript.IsMove(false);
-        }
-        playerRidigbodyScript = player.GetComponent<MoveRidigbody>();
-        celownik = player.transform.Find("Celownik").gameObject;
-        camerafollowobject = player.transform.Find("CameraFollowObject").gameObject;
-        playerRidigbodyScript.IsMove(true);
+    public void UnLoadPlayer() {
+        UnLoadGun();
+        keyDown = false;
+        playerRidigbodyScript.IsMove(false);
+        player = null;
     }
 
-    public void UnLoadPlayer() {
-        keyDown = false;
-    }
+
 
     // Update is called once per frame
     void Update()
     {
+       
+
         if (Input.GetMouseButtonDown(1))
         {
+            if (player == null) {
+                return;
+            }
             keyDown = !keyDown;
             rotX = celownik.transform.parent.eulerAngles.x;
             rotY = celownik.transform.parent.eulerAngles.y;
@@ -95,10 +99,7 @@ public class CameraPlayer : MonoBehaviour {
 
             //przy zmianie kamery broń jest wyjmowana lub chowana
             
-            //NISZCZENIE OBIEKTU BRONI JEŻELI JEST!
-            if (gun != null) {
-                Destroy(gun);
-            }
+            UnLoadGun();
             
         }
 
@@ -114,7 +115,9 @@ public class CameraPlayer : MonoBehaviour {
                 endAiminng = true;
                 AimingCamera();
                 if (gun == null) {
-                    loadGun();
+                    if (!cameraLocked) {
+                        loadGun();
+                    }
                 }
                
 
@@ -158,13 +161,22 @@ public class CameraPlayer : MonoBehaviour {
         gun = Instantiate(g.guns[g.selectedGun], Camera.main.transform);
     }
 
+    private void UnLoadGun() {
+        //NISZCZENIE OBIEKTU BRONI JEŻELI JEST!
+        if (gun != null) {
+            Destroy(gun);
+        }
+    }
+
 
 
     void LateUpdate()
     {
         if (!keyDown)
         {
-            //Debug.Log("lateUpdate");
+            if (camerafollowobject == null) {
+                return;
+            }
             camerafollow();
         }
     }
@@ -181,10 +193,6 @@ public class CameraPlayer : MonoBehaviour {
         rotY = Mathf.Clamp(rotY, celownik.transform.parent.eulerAngles.y - 40, celownik.transform.parent.eulerAngles.y + 40);
         Camera.main.transform.eulerAngles = new Vector3(rotX, rotY, 0f);
 
-    }
-
-    private void init() {
-        playerRidigbodyScript.IsMove(true);
     }
 
     private void FreeCamera()
@@ -205,5 +213,9 @@ public class CameraPlayer : MonoBehaviour {
         Transform cel = camerafollowobject.transform;
         float step = 120f * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, cel.position, step);
+    }
+
+    public void LockCamera() {
+        cameraLocked = true;
     }
 }

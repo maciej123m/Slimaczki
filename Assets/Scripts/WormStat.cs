@@ -8,6 +8,7 @@ public class WormStat : MonoBehaviour
     private float hp;
     public int initValue = 100;
     public HealthBar healthBar;
+    public bool isActive = true;
     void Start() {
         hp = initValue;
         healthBar.setMaxHealth(initValue);
@@ -16,6 +17,13 @@ public class WormStat : MonoBehaviour
     public void TakeDamage(int dmg) {
         hp -= dmg;
         healthBar.TakeDamage(dmg);
+        if (isActive) {
+            Camera.main.GetComponentInParent<CameraPlayer>().UnLoadPlayer();
+        }
+    }
+
+    public void updateDamage() {
+
     }
 
 }
