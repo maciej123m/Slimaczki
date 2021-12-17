@@ -3,36 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Power_Shot : MonoBehaviour
 {
 
-    public int CurrentHealth;
-    public int MaxHealth = 100;
+    public int CurrentPower;
+    public int MaxPower = 60;
     public Slider slider;
     public Gradient gradient;
     public Image Fill;
     public int Damage;
 
-
+   
     // Start is called before the first frame update
     void Start()
     {
-        CurrentHealth = MaxHealth;
-        slider.maxValue = MaxHealth;
-        slider.value = CurrentHealth;
+        CurrentPower = MaxPower;
+        slider.maxValue = MaxPower;
+        slider.value = CurrentPower;
 
         Fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void set_hp ()
-        {
+    void SetForce(int force)
+    {
+        Slider.setValue = force;
+    }
+    public void set_power()
+    {
+        
         slider.value = slider.normalizedValue;
         Fill.color = gradient.Evaluate(slider.normalizedValue);
-        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
