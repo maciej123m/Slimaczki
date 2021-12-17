@@ -51,6 +51,7 @@ public class CameraPlayer : MonoBehaviour {
 
     void Start()
     {
+        LoadPlayer();
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;

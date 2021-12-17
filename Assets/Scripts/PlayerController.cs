@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void LoadWorm() {
 
-        //³adowanie nastêpnych robaków graczy
+        //ï¿½adowanie nastï¿½pnych robakï¿½w graczy
         switch (nextTeam) {
             case NextTeam.Team1:
                 if (selectedPlayer != null) {
