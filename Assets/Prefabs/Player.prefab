@@ -556,7 +556,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5046396192375661194}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c909b254bc53e84d85a620f3d33e46a, type: 3}
   m_Name: 
@@ -582,6 +582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initValue: 100
   healthBar: {fileID: 837049792902028265}
+  isActive: 1
+  isDmg: 0
 --- !u!64 &5046396192141398723
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
 
@@ -85,10 +86,51 @@ public class PlayerController : MonoBehaviour
         CameraBase.LockCamera();
         yield return new WaitForSeconds(3);
         CameraBase.UnLoadPlayer();
+        //LoadWorm();
         RefreshStatistic();
     }
 
     private void RefreshStatistic() {
-        LoadWorm();
+        List<GameObject> completeList = new List<GameObject>();
+        completeList.AddRange(playerTeam1.Where(x => x.GetComponent<WormStat>().isDmg == true).ToList());
+        completeList.AddRange(playerTeam2.Where(x => x.GetComponent<WormStat>().isDmg == true).ToList());
+
+        var tempList = new List<GameObject>();
+        int licznik = 0;
+
+        tempList.Add(completeList[0]);
+        completeList.RemoveAt(0);
+        int tempPlayer = 0;
+        float tempDistance = 999;
+        while (completeList.Count != 0) {
+            tempPlayer = 0;
+            tempDistance = 999;
+            for (int i = 0; i < completeList.Count; i++) {
+                var distance = Vector3.Distance(tempList[tempList.Count - 1].transform.position,
+                    completeList[i].transform.position);
+
+                if (distance < tempDistance) {
+                    tempPlayer = i;
+                    tempDistance = distance;
+                }
+            }
+            tempList.Add(completeList[tempPlayer]);
+            completeList.RemoveAt(tempPlayer);
+        }
+
+        StartCoroutine(MoveCameraToPlayer(tempList,0));
+
+        
+    }
+
+    IEnumerator MoveCameraToPlayer(List<GameObject> players, int licznik) {
+        yield return new WaitForSeconds(1);
+        //SUWANIE KAMERY I ODEJMOWANIE DMG ROBAKOM!
+        //REKURENCYJNE
+        MoveCameraToPlayer(players, licznik + 1);
+    }
+
+    void ShowRayBetweenPoints(Vector3 p1, Vector3 p2) {
+        Debug.DrawRay(p1, (p2 - p1), Color.yellow);
     }
 }
