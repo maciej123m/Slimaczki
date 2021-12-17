@@ -365,6 +365,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5046396192375661190, guid: 5bedbae8cc0a17148812353119807404, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51cf9a484117d814094753e8d441e43b, type: 2}
     - target: {fileID: 5046396192375661193, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -508,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.665546
+      value: -10.556
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.y
@@ -516,7 +520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.154646
+      value: 15.306
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalRotation.w
@@ -546,6 +550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5046396192375661190, guid: 5bedbae8cc0a17148812353119807404, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51cf9a484117d814094753e8d441e43b, type: 2}
     - target: {fileID: 5046396192375661193, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -684,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3466911
+      value: 9.38
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.y
@@ -928,6 +936,7 @@ GameObject:
   - component: {fileID: 1234701769}
   - component: {fileID: 1234701770}
   - component: {fileID: 1234701771}
+  - component: {fileID: 1234701772}
   m_Layer: 0
   m_Name: Camera base
   m_TagString: Untagged
@@ -978,6 +987,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234701768}
   m_CullTransparentMesh: 1
+--- !u!114 &1234701772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234701768}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b5c298fa44b624da11fb81a0c8ee12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  speedRotation: 10
+  margin: 1
 --- !u!1001 &1240901644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -999,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3679323
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1007,23 +1031,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.10842
+      value: 9.79
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.99791926
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.064476565
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1031,7 +1055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 352.606
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1233,7 +1257,8 @@ MonoBehaviour:
   - {fileID: 2137334395}
   - {fileID: 736000966}
   selectedPlayer: {fileID: 0}
-  CameraBase: {fileID: 1234701770}
+  cameraBase: {fileID: 1234701768}
+  timeDelay: 2
 --- !u!1 &1959527996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.1902473
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: 5046396192375661188, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1507,6 +1532,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5046396192375661190, guid: 5bedbae8cc0a17148812353119807404, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51cf9a484117d814094753e8d441e43b, type: 2}
     - target: {fileID: 5046396192375661194, guid: 5bedbae8cc0a17148812353119807404, type: 3}
       propertyPath: m_Name
       value: Player

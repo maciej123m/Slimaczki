@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> playerTeam2;
 
     public GameObject selectedPlayer;
+    public GameObject cameraBase;
 
-    public CameraPlayer CameraBase;
+    private CameraPlayer cameraPlayer;
+    private PassThroughCamera passThroughCamera;
 
+    public float timeDelay = 2f;
     public enum NextTeam {
         Team1 = 1,
         Team2 = 2
@@ -27,21 +30,18 @@ public class PlayerController : MonoBehaviour
 
     private int numberWormsTeam2 = 0;
 
-    void Start()
-    {
+    void Start() {
+        cameraPlayer = cameraBase.GetComponent<CameraPlayer>();
+        passThroughCamera = cameraBase.GetComponent<PassThroughCamera>();
         numberWormsInTeam = playerTeam1.Count;
         LoadWorm();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void LoadWorm() {
-
-        //ï¿½adowanie nastï¿½pnych robakï¿½w graczy
+        passThroughCamera.enabled = false;
+        cameraPlayer.enabled = true;
+        //³adowanie nastêpnych robaków graczy
         switch (nextTeam) {
             case NextTeam.Team1:
                 if (selectedPlayer != null) {
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
                 }
                 selectedPlayer = playerTeam1[numberWormsTeam1];
                 selectedPlayer.GetComponent<WormStat>().isActive = true;
-                CameraBase.LoadPlayer(selectedPlayer);
+                cameraPlayer.LoadPlayer(selectedPlayer);
                 nextTeam = NextTeam.Team2;
                 if (numberWormsTeam1+1 == numberWormsInTeam) {
                     numberWormsTeam1 = 0;
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
                     selectedPlayer.GetComponent<WormStat>().isActive = false;
                 }
                 selectedPlayer = playerTeam2[numberWormsTeam2];
-                CameraBase.LoadPlayer(selectedPlayer);
+                cameraPlayer.LoadPlayer(selectedPlayer);
                 selectedPlayer.GetComponent<WormStat>().isActive = true;
                 nextTeam = NextTeam.Team1;
                 if (numberWormsTeam2 + 1 == numberWormsInTeam) {
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
     public void UnLoadWorm() {
@@ -83,9 +83,10 @@ public class PlayerController : MonoBehaviour
 
     //UNIWERSALNY DELAY
     IEnumerator delay() {
-        CameraBase.LockCamera();
+        cameraPlayer.LockCamera();
         yield return new WaitForSeconds(3);
-        CameraBase.UnLoadPlayer();
+        cameraPlayer.UnLoadPlayer();
+        cameraPlayer.enabled = false;
         //LoadWorm();
         RefreshStatistic();
     }
@@ -94,7 +95,10 @@ public class PlayerController : MonoBehaviour
         List<GameObject> completeList = new List<GameObject>();
         completeList.AddRange(playerTeam1.Where(x => x.GetComponent<WormStat>().isDmg == true).ToList());
         completeList.AddRange(playerTeam2.Where(x => x.GetComponent<WormStat>().isDmg == true).ToList());
-
+        if (completeList.Count == 0) {
+            LoadWorm();
+            return;
+        }
         var tempList = new List<GameObject>();
         int licznik = 0;
 
@@ -118,16 +122,31 @@ public class PlayerController : MonoBehaviour
             completeList.RemoveAt(tempPlayer);
         }
 
+        passThroughCamera.enabled = true;
         StartCoroutine(MoveCameraToPlayer(tempList,0));
-
-        
     }
 
-    IEnumerator MoveCameraToPlayer(List<GameObject> players, int licznik) {
-        yield return new WaitForSeconds(1);
+    IEnumerator MoveCameraToPlayer(List<GameObject> players, int i) {
+        passThroughCamera.JumpToPlayer(players[i]);
+        yield return new WaitWhile(() => Vector3.Distance(transform.position,players[i].transform.position) == 0);
+        yield return new WaitForSeconds(2);
+        var playerWormStat = players[i].GetComponent<WormStat>();
+        int dmg = playerWormStat.GetTempDmg();
+        bool isDead = playerWormStat.UpdateHealth();
+        float czas = timeDelay / dmg;
+        yield return new WaitForSeconds(czas+3);
+        if (isDead) {
+            //animacja zginiêcia + dezaktywacja
+        }
         //SUWANIE KAMERY I ODEJMOWANIE DMG ROBAKOM!
         //REKURENCYJNE
-        MoveCameraToPlayer(players, licznik + 1);
+        if (i+1 < players.Count) {
+            StartCoroutine(MoveCameraToPlayer(players, i + 1));
+        }
+        else {
+            LoadWorm();
+            yield return i;
+        }
     }
 
     void ShowRayBetweenPoints(Vector3 p1, Vector3 p2) {

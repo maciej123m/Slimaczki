@@ -6,18 +6,18 @@ public class BazookaPocisk : MonoBehaviour
 {
     //eksplozja pociku
     public GameObject rocketExplosion;
-    //dï¿½wiï¿½k podczas lotu
+    //dŸwiêk podczas lotu
     public AudioSource inFlightAudioSource;
 
     public ParticleSystem disableOnHit;
-    //czy eksplodowaï¿½o
+    //czy eksplodowa³o
     private bool explode = false;
 
     private Rigidbody rb;
-    //maksymalne dmg moï¿½liwe do zadania przez ten pocisk
+    //maksymalne dmg mo¿liwe do zadania przez ten pocisk
     public int maxDMG = 50;
 
-    //w jakiej odlegï¿½oï¿½ci jest odczuwalne
+    //w jakiej odleg³oœci jest odczuwalne
     [Range(1,20)]
     public float radius = 5f; 
 

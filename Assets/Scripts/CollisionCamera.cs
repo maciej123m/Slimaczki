@@ -9,15 +9,20 @@ public class CollisionCamera : MonoBehaviour {
 	public float smooth = 10.0f;
 	Vector3 doll;
     public float distance;
-
+    private CameraPlayer cameraPlayer;
     public float scroll;
 	void Start () {
 		doll = transform.localPosition.normalized;
 		distance = transform.localPosition.magnitude;
-	}
+        cameraPlayer = transform.parent.GetComponent<CameraPlayer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!cameraPlayer.enabled) {
+            return;
+        }
+
 		scroll = Input.GetAxis("Mouse ScrollWheel");
 		if(maxdis <=9f && maxdis>=0.9f)
 		{

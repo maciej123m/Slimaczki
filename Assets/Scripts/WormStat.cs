@@ -21,15 +21,29 @@ public class WormStat : MonoBehaviour
     public void TakeDamage(int dmg) {
         tempDmg = dmg;
         isDmg = true;
-        // hp -= dmg;
-        //  healthBar.TakeDamage(dmg);
+      
         if (isActive) {
             Camera.main.GetComponentInParent<CameraPlayer>().UnLoadPlayer();
         }
     }
 
-    public void updateDamage() {
+    /// <summary>
+    /// odpowiada za przeliczenie ¿ycia
+    /// </summary>
+    /// <returns>zwraca czy gracz w³aœnie bêdzie gin¹æ czy nie</returns>
+    public bool UpdateHealth() {
+         hp -= tempDmg;
+         healthBar.TakeDamage(tempDmg);
+         tempDmg = 0;
+         isDmg = false;
+         if (hp <= 0) {
+             return true;
+         }
+         return false;
+    }
 
+    public int GetTempDmg() {
+        return tempDmg;
     }
 
 }

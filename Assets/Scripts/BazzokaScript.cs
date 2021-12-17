@@ -17,7 +17,7 @@ public class BazzokaScript : MonoBehaviour
 
 
     [Range(50,150)]
-    public float limit = 100;
+    public float limit = 60;
 
     public bool isShot = false;
 
