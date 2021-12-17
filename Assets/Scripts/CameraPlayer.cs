@@ -11,11 +11,13 @@ public class CameraPlayer : MonoBehaviour {
     public GameObject gameManger;
 
     // Use this for initialization
-    public GameObject camerafollowobject;
-    public GameObject celownik;
+    private GameObject camerafollowobject;
+    [HideInInspector] public GameObject celownik;
 
     //skrypt move gracza
-    public MoveRidigbody player;
+    private MoveRidigbody playerRidigbodyScript;
+
+    public GameObject player;
 
     //kąty maksymalne
     private float minClampEagle = 80.0f;
@@ -45,6 +47,7 @@ public class CameraPlayer : MonoBehaviour {
 
     void Start()
     {
+        LoadPlayer();
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
@@ -52,6 +55,31 @@ public class CameraPlayer : MonoBehaviour {
         Cursor.visible = false;
         defaultRotation = Camera.main.transform.localRotation;
         init();
+    }
+
+    public void LoadPlayer(GameObject p) {
+        if (playerRidigbodyScript != null) {
+            playerRidigbodyScript.IsMove(false);
+        }
+        player = p;
+        playerRidigbodyScript = player.GetComponent<MoveRidigbody>();
+        celownik = player.transform.Find("Celownik").gameObject;
+        camerafollowobject = player.transform.Find("CameraFollowObject").gameObject;
+        playerRidigbodyScript.IsMove(true);
+    }
+
+    public void LoadPlayer() {
+        if (playerRidigbodyScript != null) {
+            playerRidigbodyScript.IsMove(false);
+        }
+        playerRidigbodyScript = player.GetComponent<MoveRidigbody>();
+        celownik = player.transform.Find("Celownik").gameObject;
+        camerafollowobject = player.transform.Find("CameraFollowObject").gameObject;
+        playerRidigbodyScript.IsMove(true);
+    }
+
+    public void UnLoadPlayer() {
+        keyDown = false;
     }
 
     // Update is called once per frame
@@ -79,7 +107,7 @@ public class CameraPlayer : MonoBehaviour {
         {
             //Debug.Log("przycisk wciśnięty");
             Camera.main.GetComponent<CollisionCamera>().enabled = false;
-            player.IsMove(false);
+            playerRidigbodyScript.IsMove(false);
             //Jeżeli kamera się ustawi do pozycji ma się odblokować możliwość ruszania kamerą
             if (Vector3.Distance(Camera.main.transform.position, celownik.transform.position) < 0.1f)
             {
@@ -110,7 +138,7 @@ public class CameraPlayer : MonoBehaviour {
             //przywracanie rotacji domyślnej
             Camera.main.transform.localRotation = defaultRotation;
             Camera.main.GetComponent<CollisionCamera>().enabled = true;
-            player.IsMove(true);
+            playerRidigbodyScript.IsMove(true);
             FreeCamera();
         }
     }
@@ -156,7 +184,7 @@ public class CameraPlayer : MonoBehaviour {
     }
 
     private void init() {
-        player.IsMove(true);
+        playerRidigbodyScript.IsMove(true);
     }
 
     private void FreeCamera()

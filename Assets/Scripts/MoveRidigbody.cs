@@ -77,7 +77,7 @@ public class MoveRidigbody : MonoBehaviour
         else {
             input = 0;
         }
-        Debug.Log(input);
+        //Debug.Log(input);
 
         var fowardPlayer = transform.forward;
         var rightPlayer = transform.right;
@@ -101,7 +101,7 @@ public class MoveRidigbody : MonoBehaviour
         }
 
         Vector3 movementVelocity = moveDirection * movmentSpeed * Time.deltaTime;
-        Debug.Log(movementVelocity);
+        //Debug.Log(movementVelocity);
         rb.MovePosition(transform.position+movementVelocity);
     }
 

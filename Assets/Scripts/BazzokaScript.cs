@@ -39,7 +39,10 @@ public class BazzokaScript : MonoBehaviour
             }
         }
 
-        Debug.Log(force);
+        if (force!=0) {
+            Debug.Log(force);
+        }
+
         if (Input.GetMouseButtonUp(0)) {
             ad.clip = fire;
             ad.Play();
