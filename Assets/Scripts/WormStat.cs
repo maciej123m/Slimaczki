@@ -8,7 +8,7 @@ public class WormStat : MonoBehaviour
     private float hp;
     public int initValue = 100;
     public HealthBar healthBar;
-    public bool isActive = true;
+    public bool isActive = false;
 
     public bool isDmg = false;
     private int tempDmg = 0;
