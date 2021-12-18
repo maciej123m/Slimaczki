@@ -24,13 +24,12 @@ public class Power_Shot : MonoBehaviour
         Fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    void SetForce(int force)
+    public void SetForce(int force)
     {
-        Slider.setValue = force;
+        slider.value = force;
     }
     public void set_power()
     {
-        
         slider.value = slider.normalizedValue;
         Fill.color = gradient.Evaluate(slider.normalizedValue);
     }

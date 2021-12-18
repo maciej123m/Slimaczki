@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,19 @@ public class PassThroughCamera : MonoBehaviour
 
     [Range(0, 4)]
     public float margin = 1;
-
+    
     private GameObject player;
-    public void JumpToPlayer(GameObject player) {
+
+    public enum Tryb {
+        Statystyki,
+        Przygotowanie
+    }
+
+    public Tryb tryb = Tryb.Statystyki;
+
+    public void JumpToPlayer(GameObject player, Tryb tryb) {
         this.player = player;
+        this.tryb = tryb;
     }
 
     void LateUpdate() {
@@ -36,7 +46,14 @@ public class PassThroughCamera : MonoBehaviour
 
         //pozycja ustawienia kamery podczas podsumowania!
         //var target = cel.position + cel.forward * 3 + cel.up*2 +cel.up*-3+ cel.right * -1;
-        var target = cel.position + cel.forward * 3 + (cel.up / 20) + cel.right * -1;
+        Vector3 target = Vector3.zero;
+        if (tryb == Tryb.Statystyki) {
+            target = cel.position + cel.forward * 3 + (cel.up / 20) + cel.right * -1;
+        }
+        else if (tryb == Tryb.Przygotowanie) {
+            target = cel.position + cel.forward * -3;
+        }
+
         //prêdkoœæ
         float mnoznik = Vector3.Distance(transform.position, target);
         float step = speed * mnoznik * Time.deltaTime;
