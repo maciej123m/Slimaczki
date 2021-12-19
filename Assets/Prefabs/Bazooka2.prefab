@@ -100,8 +100,7 @@ MonoBehaviour:
   t: {fileID: 0}
   equip: {fileID: 8300000, guid: 2b401956f2477ee4ca8e20a498d35dae, type: 3}
   fire: {fileID: 8300000, guid: 40e71b0f7bd610849b40f150553f4702, type: 3}
-  GameController: {fileID: 0}
-  limit: 100
+  limit: 60
   isShot: 0
 --- !u!82 &4900833132261483385
 AudioSource:
