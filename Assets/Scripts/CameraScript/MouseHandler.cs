@@ -8,7 +8,6 @@ public class MouseHandler : MonoBehaviour {
     public float horizontalSpeed = 1.5f;
     public float verticalSpeed = 1.5f;
 
-    public GameObject celownik;
 
     //rotacja kamery
     private float xRotation = 0f;
