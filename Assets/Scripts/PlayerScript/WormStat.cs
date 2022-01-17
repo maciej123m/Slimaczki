@@ -30,10 +30,13 @@ public class WormStat : MonoBehaviour
 
     public void Activate() {
         isActive = true;
+        transform.Find("Canvas").GetComponent<Canvas>().enabled = false;
     }
 
     public void Deactivate() {
         isActive = false;
+        transform.Find("Canvas").GetComponent<Canvas>().enabled = true;
+
     }
     /// <summary>
     /// odpowiada za przeliczenie ¿ycia

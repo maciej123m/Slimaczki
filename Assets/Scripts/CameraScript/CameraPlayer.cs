@@ -49,6 +49,8 @@ public class CameraPlayer : MonoBehaviour {
     //jeżeli pocisk już został wystrzelony zablokuj kamere!
     private bool cameraLocked = false;
 
+    public Canvas aimingCanvas;
+
     void Start()
     {
         Vector3 rot = transform.localRotation.eulerAngles;
@@ -108,6 +110,7 @@ public class CameraPlayer : MonoBehaviour {
                 endAiminng = true;
                 AimingCamera();
                 if (gun == null) {
+                    aimingCanvas.gameObject.SetActive(true);
                     loadGun();
                 }
                
@@ -128,6 +131,8 @@ public class CameraPlayer : MonoBehaviour {
         }
         else
         {
+            aimingCanvas.gameObject.SetActive(false);
+
             //Debug.Log("przycisk nie wciśnięty");
             //przywracanie rotacji domyślnej
             Camera.main.transform.localRotation = defaultRotation;

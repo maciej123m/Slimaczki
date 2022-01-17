@@ -23,6 +23,8 @@ public class BazzokaScript : MonoBehaviour
 
     private PlayerController playerController;
 
+    private TimeController timeController;
+
     void Start() {
         force = 0f;
         ad = GetComponent<AudioSource>();
@@ -30,6 +32,8 @@ public class BazzokaScript : MonoBehaviour
         ad.Play();
         //³adowanie gamecontroller DO ZMIANY!
         playerController = Camera.main.transform.parent.GetComponent<CameraPlayer>().gameManger.GetComponent<PlayerController>();
+        timeController = Camera.main.transform.parent.GetComponent<CameraPlayer>().gameManger
+            .GetComponent<TimeController>();
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class BazzokaScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) {
             licznik = true;
+            timeController.stopTime();
         }
 
         if (licznik) {

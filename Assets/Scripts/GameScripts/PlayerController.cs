@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private CameraPlayer cameraPlayer;
     private PassThroughCamera passThroughCamera;
 
+    public TimeController timeController;
+
     public float timeDelay = 2f;
     public enum NextTeam {
         Team1 = 1,
@@ -29,6 +31,9 @@ public class PlayerController : MonoBehaviour
     private int numberWormsTeam1 = 0;
 
     private int numberWormsTeam2 = 0;
+
+    //canvas z oczekiwaniem na klikniêcie spacji
+    public Canvas waitCanvas;
 
     void Start() {
         cameraPlayer = cameraBase.GetComponent<CameraPlayer>();
@@ -64,20 +69,22 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-
         StartCoroutine(MoveCameraToStartPlayer(selectedPlayer));
 
     }
 
     IEnumerator MoveCameraToStartPlayer(GameObject player) {
         passThroughCamera.JumpToPlayer(player, PassThroughCamera.Tryb.Przygotowanie);
-        yield return new WaitWhile(() => Vector3.Distance(transform.position, player.transform.position) == 0);
+        yield return new WaitWhile(() => Vector3.Distance(Camera.main.transform.parent.transform.position,
+            player.transform.Find("CameraFollowObject").transform.position) > 3.3);
         //kliknij spacje
+        waitCanvas.gameObject.SetActive(true);
         yield return new WaitWhile(() => !Input.GetKeyDown(KeyCode.Space));
-        Debug.Log("load");
+        waitCanvas.gameObject.SetActive(false);
         //³adowanie gracza do kamery
         cameraPlayer.LoadPlayer(selectedPlayer);
         //tutaj wyœwietl ekran
+        timeController.reloadAndStartTime();
         passThroughCamera.enabled = false;
         cameraPlayer.enabled = true;
     }
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour
         {
             selectedPlayer.GetComponent<WormStat>().Deactivate();
         }
+        timeController.stopTime();
         StartCoroutine(UnLoadWormCoroutine());
     }
 
