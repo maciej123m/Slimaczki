@@ -10,7 +10,7 @@ public class gunManger : MonoBehaviour
 
     public List<GameObject> guns;
     public int selectedGun = 0;
-
+    public GameObject canvas;
 
     void Update() {
         List<KeyCode> l = new List<KeyCode>() {
@@ -21,6 +21,15 @@ public class gunManger : MonoBehaviour
             if (Input.GetKeyDown(l[i])) {
                 selectedGun = i;
                 Camera.main.GetComponentInParent<CameraPlayer>().updateGun();
+                switch (i) {
+                    case 0:
+                        canvas.GetComponent<InterfaceConstroller>().reload(true);
+                        break;
+                    case 1:
+                        canvas.GetComponent<InterfaceConstroller>().reload(false);
+                        break;
+                }
+                
             }
         }
 

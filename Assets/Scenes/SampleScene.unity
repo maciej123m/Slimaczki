@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f2c58550a026142838bcd2c9923e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 0}
+  bar: {fileID: 637957874}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,7 +2128,8 @@ MonoBehaviour:
   guns:
   - {fileID: 6653167735853953195, guid: e783a5e03748043409081f6e60a814f1, type: 3}
   - {fileID: 2257143194771008960, guid: 24b51955a36aeda4090cc0eff4e3f02d, type: 3}
-  selectedGun: 1
+  selectedGun: 0
+  canvas: {fileID: 888967626}
 --- !u!4 &1930236185
 Transform:
   m_ObjectHideFlags: 0

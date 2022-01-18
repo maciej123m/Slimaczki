@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraPlayer : MonoBehaviour {
 
@@ -111,7 +112,7 @@ public class CameraPlayer : MonoBehaviour {
                 AimingCamera();
                 if (gun == null) {
                     aimingCanvas.gameObject.SetActive(true);
-                    aimingCanvas.GetComponent<InterfaceConstroller>().reload();
+                    aimingCanvas.GetComponentInChildren<Slider>().value = 0;
                     loadGun();
                 }
                
