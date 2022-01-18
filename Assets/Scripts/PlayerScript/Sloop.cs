@@ -6,32 +6,31 @@ using UnityEngine;
 public class Sloop : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform rayOrigin;
     void Start()
     {
         
     }
 
+    private RaycastHit slopeHit;
     // Update is called once per frame
+    private Vector3 slopeMoveDirection;
     void FixedUpdate() {
-        
-        RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity)) {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance,
-                Color.yellow);
-            //Debug.Log(Math.Round(hit.distance, 3));
+        onSlope();
+       
 
-            //Debug.Log(Vector3.Angle(transform.position, new Vector3(transform.position.x,transform.position.y-hit.distance,transform.position.z)));
-            //Debug.Log(Vector3.Angle(transform.position, hit.point));
-            Debug.Log(hit.point);
-            if (Math.Round(hit.distance,3) >= 1.05f) { 
-                Debug.Log("wy¿ej");
-            }
-            else if (Math.Round(hit.distance, 3) <= 0.95f) {
-                Debug.Log("ni¿ej");
-            }
+    }
 
-            
+    void OnDrawGizmosSelected() {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(slopeMoveDirection, 1);
+    }
+
+    private void onSlope() {
+        if (Physics.Raycast(rayOrigin.position, Vector3.down, out slopeHit, transform.lossyScale.y / 2 + 0.5f)) {
+            transform.rotation = new Quaternion(Quaternion.FromToRotation(Vector3.up, slopeHit.normal).x,transform.rotation.y,
+                transform.rotation.z,transform.rotation.w);
         }
     }
 

@@ -42,7 +42,7 @@ public class PassThroughCamera : MonoBehaviour
         }
 
         Transform cel = player.transform.Find("CameraFollowObject").transform;
-       
+        //Debug.Log(Vector3.Distance(cel.position,transform.position));
 
         //pozycja ustawienia kamery podczas podsumowania!
         //var target = cel.position + cel.forward * 3 + cel.up*2 +cel.up*-3+ cel.right * -1;

@@ -35,8 +35,7 @@ public class Power_Shot : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }

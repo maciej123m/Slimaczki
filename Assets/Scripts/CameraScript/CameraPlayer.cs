@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraPlayer : MonoBehaviour {
 
@@ -48,6 +49,8 @@ public class CameraPlayer : MonoBehaviour {
 
     //jeżeli pocisk już został wystrzelony zablokuj kamere!
     private bool cameraLocked = false;
+
+    public Canvas aimingCanvas;
 
     void Start()
     {
@@ -108,6 +111,8 @@ public class CameraPlayer : MonoBehaviour {
                 endAiminng = true;
                 AimingCamera();
                 if (gun == null) {
+                    aimingCanvas.gameObject.SetActive(true);
+                    aimingCanvas.GetComponentInChildren<Slider>().value = 0;
                     loadGun();
                 }
                
@@ -128,6 +133,8 @@ public class CameraPlayer : MonoBehaviour {
         }
         else
         {
+            aimingCanvas.gameObject.SetActive(false);
+
             //Debug.Log("przycisk nie wciśnięty");
             //przywracanie rotacji domyślnej
             Camera.main.transform.localRotation = defaultRotation;
@@ -181,6 +188,9 @@ public class CameraPlayer : MonoBehaviour {
 
 
     public void updateGun() {
+        if (!aimingKeyPress || cameraLocked || !endAiminng) {
+            return;
+        }
         if (gun != null) {
             Destroy(gun);
         }
