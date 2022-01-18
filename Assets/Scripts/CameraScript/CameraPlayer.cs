@@ -111,6 +111,7 @@ public class CameraPlayer : MonoBehaviour {
                 AimingCamera();
                 if (gun == null) {
                     aimingCanvas.gameObject.SetActive(true);
+                    aimingCanvas.GetComponent<InterfaceConstroller>().reload();
                     loadGun();
                 }
                
@@ -186,6 +187,9 @@ public class CameraPlayer : MonoBehaviour {
 
 
     public void updateGun() {
+        if (!aimingKeyPress || cameraLocked || !endAiminng) {
+            return;
+        }
         if (gun != null) {
             Destroy(gun);
         }

@@ -9,9 +9,8 @@ public class BazzokaScript : MonoBehaviour
     public GameObject pocisk;
     private float force;
     private bool licznik = false;
-    private AudioSource ad;
-    public Text t;
 
+    private AudioSource ad;
     public AudioClip equip;
     public AudioClip fire;
 
@@ -24,6 +23,7 @@ public class BazzokaScript : MonoBehaviour
     private PlayerController playerController;
 
     private TimeController timeController;
+    private GameObject can;
 
     void Start() {
         force = 0f;
@@ -34,6 +34,7 @@ public class BazzokaScript : MonoBehaviour
         playerController = Camera.main.transform.parent.GetComponent<CameraPlayer>().gameManger.GetComponent<PlayerController>();
         timeController = Camera.main.transform.parent.GetComponent<CameraPlayer>().gameManger
             .GetComponent<TimeController>();
+        can = GameObject.Find("Aiming");
     }
 
     // Update is called once per frame
@@ -52,6 +53,7 @@ public class BazzokaScript : MonoBehaviour
         if (licznik) {
             if (force < limit) {
                 force += Time.deltaTime * 20;
+                can.GetComponent<Canvas>().GetComponentInChildren<Slider>().value = force;
             }
             else {
                 Shot();

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Sloop : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform rayOrigin;
     void Start()
     {
         
@@ -16,8 +17,7 @@ public class Sloop : MonoBehaviour
     private Vector3 slopeMoveDirection;
     void FixedUpdate() {
         onSlope();
-        slopeMoveDirection = Vector3.ProjectOnPlane(transform.position, slopeHit.normal);
-        //Debug.Log(slopeMoveDirection);
+       
 
     }
 
@@ -27,17 +27,11 @@ public class Sloop : MonoBehaviour
         Gizmos.DrawSphere(slopeMoveDirection, 1);
     }
 
-    private bool onSlope() {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, transform.lossyScale.y / 2 + 0.5f)) {
-            if (slopeHit.normal != Vector3.up) {
-                return true;
-            }
-            else {
-                return false;
-            }
+    private void onSlope() {
+        if (Physics.Raycast(rayOrigin.position, Vector3.down, out slopeHit, transform.lossyScale.y / 2 + 0.5f)) {
+            transform.rotation = new Quaternion(Quaternion.FromToRotation(Vector3.up, slopeHit.normal).x,transform.rotation.y,
+                transform.rotation.z,transform.rotation.w);
         }
-
-        return true;
     }
 
 }
